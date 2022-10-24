@@ -1,6 +1,5 @@
 /*
- * Sample code used throughout the Udacity course
- */
+the sample used in the course */
 import {
   DisplayProcessor,
   SpecReporter,
