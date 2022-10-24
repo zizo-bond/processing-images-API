@@ -21,7 +21,6 @@ describe('Test image processing via sharp', (): void => {
     expect(error).not.toBeNull();
   });
 
-  // Note: Could also fail because of directory permissions
   it('succeeds to write resized thumb file (existing file, valid size values)', async (): Promise<void> => {
     await File.createThumb({ filename: 'fjord', width: '99', height: '99' });
 
@@ -42,7 +41,7 @@ describe('Test image processing via sharp', (): void => {
   });
 });
 
-// Erase test file. Test should not run on productive system to avoid cache loss
+// erasing test files. NB: YOU should not run test on productive system to avoid cache loss
 afterAll(async (): Promise<void> => {
   const resizedImagePath: string = path.resolve(
     File.imagesThumbPath,
