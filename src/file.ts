@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import processImage from './image-processing'; // Image handling
 
-// query segments
+// Segments of query
 interface ImageQuery {
   filename?: string;
   width?: string;
@@ -10,12 +10,12 @@ interface ImageQuery {
 }
 
 export default class File {
-  // Default paths
+  // these are default paths
   static imagesFullPath = path.resolve(__dirname, '../assets/images/full');
   static imagesThumbPath = path.resolve(__dirname, '../assets/images/thumb');
 
   /**
-   * Determine image path.
+   *  image path determination.
    * @param {ImageQuery} params Parameters.
    * @param {string} [params.filename] Filename.
    * @param {string} [params.width] Desired width.
@@ -27,7 +27,7 @@ export default class File {
       return null;
     }
 
-    // Build appropriate path
+    // make an appropriate path
     const filePath: string =
       params.width && params.height
         ? path.resolve(
@@ -36,7 +36,7 @@ export default class File {
           )
         : path.resolve(File.imagesFullPath, `${params.filename}.jpg`);
 
-    // Check file existence
+    // Check if file is existed
     try {
       await fs.access(filePath);
       return filePath;
@@ -46,46 +46,46 @@ export default class File {
   }
 
   /*
-   * Check if an image is available.
+   * Check image is avilable.
    * @param {string} [filename=''] Filename (without file extension).
    * @return {boolean} True if image is available, else false.
    */
   static async isImageAvailable(filename: string = ''): Promise<boolean> {
     if (!filename) {
-      return false; // Fail early
+      return false; // Fail 
     }
 
     return (await File.getAvailableImageNames()).includes(filename);
   }
 
   /**
-   * Retrieve available image names.
+   * Retrieve image names.
    * @return {string[]} Available image names (without file extension).
    */
   static async getAvailableImageNames(): Promise<string[]> {
     try {
       return (await fs.readdir(File.imagesFullPath)).map(
         (filename: string): string => filename.split('.')[0]
-      ); // Cut extension
+      ); // Cut extensions
     } catch {
       return [];
     }
   }
 
   /**
-   * Determine whether a thumb is already available.
+   * Determine if the thumb is already available.
    * @param {ImageQuery} params Parameters.
    * @param {string} [params.filename] Filename.
    * @param {string} [params.width] Desired width.
    * @param {string} [params.height] Desired height.
-   * @return {boolean} True, if thumb is available, else false.
+   * @return {boolean} True, if  the thumb is available, else false.
    */
   static async isThumbAvailable(params: ImageQuery): Promise<boolean> {
     if (!params.filename || !params.width || !params.height) {
-      return false; // Fail early
+      return false; // Fail 
     }
 
-    // Set appropriate path
+    // make an appropriate path
     const filePath: string = path.resolve(
       File.imagesThumbPath,
       `${params.filename}-${params.width}x${params.height}.jpg`
@@ -100,7 +100,7 @@ export default class File {
   }
 
   /**
-   * Create thumb path.
+   * make a thumb path.
    */
   static async createThumbPath(): Promise<void> {
     try {
@@ -112,7 +112,7 @@ export default class File {
   }
 
   /**
-   * Create thumb file.
+   * make thumb file.
    * @param {ImageQuery} params Parameters.
    * @param {string} [params.filename] Filename.
    * @param {string} [params.width] Desired width.
