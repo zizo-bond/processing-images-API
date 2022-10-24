@@ -52,6 +52,6 @@ afterAll(async (): Promise<void> => {
     await fs.access(resizedImagePath);
     fs.unlink(resizedImagePath);
   } catch {
-    // intentionally left blank
+    // leave this blank
   }
 });
