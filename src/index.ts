@@ -5,12 +5,12 @@ import File from './file';
 const app: express.Application = express();
 const port: number = 3000; // Default port
 
-// Add routes
+// Adding routes
 app.use(routes);
 
-// Start server
+// Starting the server
 app.listen(port, async (): Promise<void> => {
-  // Make sure that thumb path is available
+  // ASSURE that thumb path is available
   await File.createThumbPath();
 
   const url: string = `\x1b[2mhttp://localhost:${port}\x1b[0m`;
