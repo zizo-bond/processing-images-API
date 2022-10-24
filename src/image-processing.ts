@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 
-// query segments
+// segments
 interface sharpResizeParams {
   source: string;
   target: string;
@@ -9,7 +9,7 @@ interface sharpResizeParams {
 }
 
 /**
- * Process image via sharp.
+ * Process image through sharp.
  * @param {sharpResizeParams} params Parameters.
  * @param {string} params.source Source image path.
  * @param {string} params.target Target path.
