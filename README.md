@@ -44,5 +44,7 @@ if you are accessing the resizing endpoint,you should also provide the dimension
 https://github.com/Eyongkevin/Udacity-Image-Processing-API#1-typescript
 
 https://prettier.io/docs/en/options.html
+
+https://github.com/otacke/udacity-image-processing-api
     
 
